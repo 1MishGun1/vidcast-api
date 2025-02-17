@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "67b36619159fb424f1f1dbf2"
+  },
+  "title": "The main title",
+  "description": "Test desc",
+  "tags": [
+    "one",
+    "two",
+    "tree",
+    "five",
+    "nine"
+  ],
+  "views": 6,
+  "user": {
+    "$oid": "67b3330eba098812e7a8ebd4"
+  },
+  "cover": "https://example.com/avatar.jpg",
+  "videoUrl": "https://example.com/avatar.jpg",
+  "createdAt": {
+    "$date": "2025-02-17T16:38:49.932Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-17T17:09:44.071Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67b36813b2c32ab6c82b321b"
+  },
+  "title": "Test 123",
+  "description": "Test 123",
+  "tags": [
+    "one",
+    "two",
+    "tree"
+  ],
+  "views": 5,
+  "user": {
+    "$oid": "67b3330eba098812e7a8ebd4"
+  },
+  "cover": "https://example.com/avatar.jpg",
+  "videoUrl": "https://example.com/avatar.jpg",
+  "createdAt": {
+    "$date": "2025-02-17T16:47:15.798Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-17T16:53:59.656Z"
+  },
+  "__v": 0
+}]
