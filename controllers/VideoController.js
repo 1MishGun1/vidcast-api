@@ -93,7 +93,7 @@ const updateVideo = async (req, res) => {
     }
 
     res.json({
-      success: true,
+      update: true,
     });
   } catch (error) {
     console.error(error);
@@ -103,4 +103,34 @@ const updateVideo = async (req, res) => {
   }
 };
 
-module.exports = { createVideo, getAllVideos, getOneVideo, updateVideo };
+const deleteVideo = async (req, res) => {
+  try {
+    const videoId = req.params.id;
+    const deleteVideo = await VideoModel.findOneAndDelete({
+      _id: videoId,
+    });
+
+    if (!deleteVideo) {
+      return res.status(404).json({
+        message: "Запрашиваемое видео отсутствует",
+      });
+    }
+
+    res.json({
+      delete: true,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Не удалось удалить видео",
+    });
+  }
+};
+
+module.exports = {
+  createVideo,
+  getAllVideos,
+  getOneVideo,
+  updateVideo,
+  deleteVideo,
+};
