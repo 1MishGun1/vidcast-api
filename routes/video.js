@@ -3,6 +3,7 @@ const {
   createVideo,
   getAllVideos,
   getOneVideo,
+  updateVideo,
 } = require("../controllers/VideoController");
 const checkMe = require("../middlewares/checkMe");
 
@@ -14,5 +15,8 @@ videoRouter.get("/videos", getAllVideos);
 
 //! Get all videos
 videoRouter.get("/videos/:id", getOneVideo);
+
+//! Update video data
+videoRouter.patch("/videos/:id", checkMe, updateVideo);
 
 module.exports = videoRouter;
