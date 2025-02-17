@@ -45,4 +45,47 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = register;
+//! Authorization user
+const login = async (req, res) => {
+  try {
+    const user = await UserModel.findOne({ login: req.body.login });
+
+    if (!user) {
+      return res.status(400).json({
+        message: "Неверный логин или пароль",
+      });
+    }
+
+    const isValidPassword = await bcrypt.compare(
+      req.body.password,
+      user._doc.passwordHash
+    );
+
+    if (!isValidPassword) {
+      return res.status(400).json({
+        message: "Неверный логин или пароль",
+      });
+    }
+
+    const tokenUser = jwt.sign(
+      {
+        _id: user._id,
+        passwordHash: user.passwordHash,
+      },
+      "secret-key-password-123-dasd",
+      {
+        expiresIn: "10d",
+      }
+    );
+
+    const { passwordHash, ...userData } = user._doc;
+    res.json({ ...userData, tokenUser });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Ошибка авторизации. Попробуйте еще раз",
+    });
+  }
+};
+
+module.exports = { register, login };
