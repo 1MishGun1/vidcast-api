@@ -22,4 +22,46 @@ const createVideo = async (req, res) => {
   }
 };
 
-module.exports = createVideo;
+//! Get all videos
+const getAllVideos = async (req, res) => {
+  try {
+    const videos = await VideoModel.find().populate("user").exec();
+    res.json(videos);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Не удалось отобразить все видео",
+    });
+  }
+};
+
+//! Get one video
+const getOneVideo = async (req, res) => {
+  try {
+    const videoId = req.params.id;
+    const updateVideoViews = await VideoModel.findByIdAndUpdate(
+      {
+        _id: videoId,
+      },
+      {
+        $inc: { views: 1 },
+      },
+      { new: true }
+    );
+
+    if (!updateVideoViews) {
+      return res.status(404).json({
+        message: "Запрашиваемое видео отсутствует",
+      });
+    }
+
+    res.json(updateVideoViews);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Не удалось отобразить данное видео",
+    });
+  }
+};
+
+module.exports = { createVideo, getAllVideos, getOneVideo };
