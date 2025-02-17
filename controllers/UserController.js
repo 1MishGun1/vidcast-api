@@ -88,4 +88,25 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+//! Get user info
+const getMe = async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.userId);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "Пользователь не найден",
+      });
+    }
+
+    const { passwordHash, ...userData } = user._doc;
+    res.json({ ...userData });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Нет прав доступа",
+    });
+  }
+};
+
+module.exports = { register, login, getMe };
