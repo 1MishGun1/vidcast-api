@@ -64,4 +64,43 @@ const getOneVideo = async (req, res) => {
   }
 };
 
-module.exports = { createVideo, getAllVideos, getOneVideo };
+const updateVideo = async (req, res) => {
+  try {
+    const videoId = req.params.id;
+    const updateVideo = await VideoModel.findOneAndUpdate(
+      {
+        _id: videoId,
+      },
+      {
+        $set: {
+          title: req.body.title,
+          description: req.body.description,
+          tags: req.body.tags,
+          cover: req.body.cover,
+          videoUrl: req.body.videoUrl,
+          user: req.userId,
+        },
+      },
+      {
+        new: true,
+      }
+    );
+
+    if (!updateVideo) {
+      return res.status(404).json({
+        message: "Запрашиваемое видео отсутствует",
+      });
+    }
+
+    res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Не удалось обновить данные видео",
+    });
+  }
+};
+
+module.exports = { createVideo, getAllVideos, getOneVideo, updateVideo };
