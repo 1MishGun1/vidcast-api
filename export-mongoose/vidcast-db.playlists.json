@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "6810d7b94388ea424a3c173c"
+  },
+  "title": "second playlist",
+  "description": "lorem text",
+  "videos": [
+    {
+      "$oid": "680fa801ffb1be63acf1911a"
+    }
+  ],
+  "user": {
+    "$oid": "680fa75119d5bb3c7b5beb3b"
+  },
+  "isVisible": true,
+  "createdAt": {
+    "$date": "2025-04-29T13:44:25.922Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-29T13:53:56.376Z"
+  },
+  "__v": 5
+},
+{
+  "_id": {
+    "$oid": "6810d7c54388ea424a3c173e"
+  },
+  "title": "three playlist",
+  "description": "lorem text",
+  "videos": [],
+  "user": {
+    "$oid": "680fa75119d5bb3c7b5beb3b"
+  },
+  "isVisible": false,
+  "createdAt": {
+    "$date": "2025-04-29T13:44:37.155Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-29T13:44:37.155Z"
+  },
+  "__v": 0
+}]
