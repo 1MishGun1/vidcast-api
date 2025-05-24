@@ -1,5 +1,6 @@
 const express = require("express");
 const connectToDatabase = require("./db/connect");
+const cors = require("cors");
 
 const mainRouter = require("./routes/index");
 const upload = require("./controllers/UploadController");
@@ -10,6 +11,7 @@ const PORT = 3333;
 connectToDatabase();
 
 app.use(express.json());
+app.use(cors());
 app.use("/uploads", express.static("uploads"));
 app.use(mainRouter);
 
