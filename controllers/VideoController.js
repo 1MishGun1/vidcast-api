@@ -25,7 +25,7 @@ const createVideo = async (req, res) => {
 //! Get all videos
 const getAllVideos = async (req, res) => {
   try {
-    const videos = await VideoModel.find().populate("user").exec();
+    const videos = await VideoModel.find().populate("user", "login").exec();
     res.json(videos);
   } catch (error) {
     console.error(error);
