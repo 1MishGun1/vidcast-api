@@ -3,7 +3,6 @@ const connectToDatabase = require("./db/connect");
 const cors = require("cors");
 
 const mainRouter = require("./routes/index");
-const upload = require("./controllers/UploadController");
 
 const app = express();
 const PORT = 3333;
