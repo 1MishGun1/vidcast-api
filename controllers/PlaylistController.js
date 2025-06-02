@@ -24,7 +24,10 @@ const createPlaylist = async (req, res) => {
 //! Get all playlists
 const getAllPlaylists = async (req, res) => {
   try {
-    const playlists = await PlaylistModel.find({ isVisible: true })
+    const { userId } = req.query;
+
+    const filter = userId ? { user: userId } : {};
+    const playlists = await PlaylistModel.find({ isVisible: true }, filter)
       .populate("user")
       .populate("videos");
     res.json(playlists);
@@ -64,6 +67,28 @@ const getOnePlaylist = async (req, res) => {
   }
 };
 
+//! Get playlists by user
+const getPlaylistsByUser = async (req, res) => {
+  try {
+    const requestingUserId = req.userId;
+    const requestedUserId = req.params.userId; 
+
+    const isOwner = requestingUserId === requestedUserId;
+
+    const playlists = await PlaylistModel.find({
+      user: requestedUserId,
+      ...(isOwner ? {} : { isVisible: true }), 
+    });
+
+    res.json(playlists);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Ошибка при получении плейлистов пользователя" });
+  }
+};
+
 //! Push video in playlist
 const pushVideoInPlaylist = async (req, res) => {
   try {
@@ -79,6 +104,12 @@ const pushVideoInPlaylist = async (req, res) => {
       return res.status(403).json({
         message: "Нет доступа к плейлисту",
       });
+    }
+
+    if (playlist.videos.includes(req.body.videoId)) {
+      return res
+        .status(400)
+        .json({ message: "Видео уже добавлено в плейлист" });
     }
 
     playlist.videos.push(req.body.videoId);
@@ -156,4 +187,5 @@ module.exports = {
   pushVideoInPlaylist,
   deleteVideoInPlaylist,
   deletePlaylist,
+  getPlaylistsByUser,
 };
