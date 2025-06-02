@@ -3,6 +3,7 @@ const {
   createPlaylist,
   getAllPlaylists,
   getOnePlaylist,
+  getPlaylistsByUser,
   pushVideoInPlaylist,
   deleteVideoInPlaylist,
   deletePlaylist,
@@ -16,7 +17,10 @@ playlistRouter.post("/playlist", checkMe, createPlaylist);
 playlistRouter.get("/playlist", getAllPlaylists);
 
 //! Get one playlist
-playlistRouter.get("/playlist/:id", checkMe, getOnePlaylist);
+playlistRouter.get("/playlist/:id", getOnePlaylist);
+
+//! Get playlists by user
+playlistRouter.get("/playlist/user/:userId", getPlaylistsByUser);
 
 //! Push video in playlist
 playlistRouter.patch("/playlist/:id/add-video", checkMe, pushVideoInPlaylist);
