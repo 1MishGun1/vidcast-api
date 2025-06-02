@@ -109,4 +109,132 @@ const getMe = async (req, res) => {
   }
 };
 
-module.exports = { register, login, getMe };
+//! Get all users
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await UserModel.find().populate("login").exec();
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Не удалось отобразить всех пользователей",
+    });
+  }
+};
+
+//! Get one user
+const getOneUser = async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.id)
+      .select("-passwordHash -tokenUser")
+      .exec();
+
+    if (!user) {
+      return res.status(404).json({
+        message: "Пользователь не найден",
+      });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Не удалось получить пользователя",
+    });
+  }
+};
+
+//! Toggle subscription
+const toggleSubscription = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const channelId = req.params.id;
+
+    const user = await UserModel.findById(userId);
+    const channel = await UserModel.findById(channelId);
+
+    if (!user || !channel) {
+      return res.status(404).json({ message: "Пользователь не найден" });
+    }
+
+    const isSubscribed = user.subscriptions.includes(channelId);
+
+    if (isSubscribed) {
+      // Отписываемся
+      await UserModel.findByIdAndUpdate(userId, {
+        $pull: { subscriptions: channelId },
+      });
+      await UserModel.findByIdAndUpdate(channelId, {
+        $pull: { subscribers: userId },
+      });
+    } else {
+      // Подписываемся
+      await UserModel.findByIdAndUpdate(userId, {
+        $addToSet: { subscriptions: channelId },
+      });
+      await UserModel.findByIdAndUpdate(channelId, {
+        $addToSet: { subscribers: userId },
+      });
+    }
+
+    res.json({ isSubscribed: !isSubscribed });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Ошибка подписки" });
+  }
+};
+
+//! Check subscription
+const checkSubscription = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const channelId = req.params.id;
+
+    const user = await UserModel.findById(userId);
+    const channel = await UserModel.findById(channelId);
+
+    if (!user || !channel) {
+      return res
+        .status(404)
+        .json({ message: "Пользователь или канал не найден" });
+    }
+
+    const isSubscribed = user.subscriptions.includes(channelId);
+    const subscribersCount = channel.subscribers.length;
+
+    res.json({ isSubscribed, subscribersCount, channelId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Ошибка проверки подписки" });
+  }
+};
+
+//! Get count sub by all users
+const getSubscribersCount = async (req, res) => {
+  try {
+    const channelId = req.params.id;
+    const channel = await UserModel.findById(channelId);
+
+    if (!channel) {
+      return res.status(404).json({ message: "Канал не найден" });
+    }
+
+    res.json({ subscribersCount: channel.subscribers.length });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Ошибка получения количества подписчиков" });
+  }
+};
+
+module.exports = {
+  register,
+  login,
+  getMe,
+  getAllUsers,
+  getOneUser,
+  toggleSubscription,
+  checkSubscription,
+  getSubscribersCount,
+};
