@@ -25,8 +25,33 @@ const createVideo = async (req, res) => {
 //! Get all videos
 const getAllVideos = async (req, res) => {
   try {
-    const videos = await VideoModel.find().populate("user", "login").exec();
+    const { userId } = req.query;
+
+    const filter = userId ? { user: userId } : {};
+
+    const videos = await VideoModel.find(filter)
+      .sort({ createdAt: -1 })
+      .populate("user");
     res.json(videos);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Не удалось отобразить все видео",
+    });
+  }
+};
+
+//! Get tags
+const getLastTags = async (req, res) => {
+  try {
+    const videos = await VideoModel.find().limit(5).exec();
+
+    const tags = videos
+      .map((obj) => obj.tags)
+      .flat()
+      .slice(0, 5);
+
+    res.json(tags);
   } catch (error) {
     console.error(error);
     return res.status(500).json({
@@ -47,7 +72,7 @@ const getOneVideo = async (req, res) => {
         $inc: { views: 1 },
       },
       { new: true }
-    );
+    ).populate("user");
 
     if (!updateVideoViews) {
       return res.status(404).json({
@@ -130,6 +155,7 @@ const deleteVideo = async (req, res) => {
 module.exports = {
   createVideo,
   getAllVideos,
+  getLastTags,
   getOneVideo,
   updateVideo,
   deleteVideo,
