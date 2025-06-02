@@ -2,6 +2,7 @@ const videoRouter = require("express").Router();
 const {
   createVideo,
   getAllVideos,
+  getLastTags,
   getOneVideo,
   updateVideo,
   deleteVideo,
@@ -15,7 +16,10 @@ videoRouter.post("/videos", checkMe, videoValidation, createVideo);
 //! Get all videos
 videoRouter.get("/videos", getAllVideos);
 
-//! Get all videos
+//! Get all tags
+videoRouter.get("/tags", getLastTags);
+
+//! Get one video
 videoRouter.get("/videos/:id", getOneVideo);
 
 //! Update video data
