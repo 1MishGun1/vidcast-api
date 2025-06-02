@@ -26,6 +26,20 @@ const UserSchema = new mongoose.Schema(
     },
     avatar: String,
     coverProfile: String,
+    subscriptions: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        default: [],
+      },
+    ],
+    subscribers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        default: [],
+      },
+    ],
   },
   {
     timestamps: true,
