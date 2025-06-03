@@ -119,7 +119,140 @@
     "$date": "2025-05-24T10:47:25.896Z"
   },
   "updatedAt": {
-    "$date": "2025-05-24T10:47:25.896Z"
+    "$date": "2025-06-02T06:12:47.905Z"
+  },
+  "__v": 0,
+  "subscriptions": [
+    {
+      "$oid": "6835b1d11e97b851054a0f4c"
+    },
+    {
+      "$oid": "6831a3bdd9453adf4cdb26e1"
+    }
+  ],
+  "subscribers": [
+    {
+      "$oid": "683cb3f5a7d36c1228cb5f33"
+    },
+    {
+      "$oid": "6831a3bdd9453adf4cdb26e1"
+    }
+  ],
+  "coverProfile": "/uploads/coversUsers/imgUser-1748844767882.png"
+},
+{
+  "_id": {
+    "$oid": "6835ab7a1e97b851054a0f3e"
+  },
+  "name": "asd",
+  "surname": "asd",
+  "login": "asd1",
+  "email": "asd@asd.asd",
+  "passwordHash": "$2b$10$w9cvYTUosAivZMRJOoqFM.oP/nkyw6nHF7ygva7dG2xZoPMdC4Ypm",
+  "createdAt": {
+    "$date": "2025-05-27T12:09:30.082Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-27T12:09:30.082Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6835b1d11e97b851054a0f4c"
+  },
+  "name": "asdd",
+  "surname": "asdd",
+  "login": "asdd",
+  "email": "asdd@asdd.sd",
+  "passwordHash": "$2b$10$hH2ngE0Y.ID4zsG9EjmPJePVhe5C71NHdr3rc1x4aqJsjRfyFA7/a",
+  "avatar": "/uploads/avatars/avatar-1748349387428.webp",
+  "createdAt": {
+    "$date": "2025-05-27T12:36:33.572Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T20:50:37.860Z"
+  },
+  "__v": 0,
+  "subscribers": [
+    {
+      "$oid": "6831a3bdd9453adf4cdb26e1"
+    },
+    {
+      "$oid": "683cb3f5a7d36c1228cb5f33"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "683c1258b180c90cbd5430d1"
+  },
+  "name": "test",
+  "surname": "test",
+  "login": "test",
+  "email": "test@test.re",
+  "passwordHash": "$2b$10$B8k650K2IMBYUsWM53qZ0eqsZWO/8DDSfc.4Bs89zwfCKYjuL.bmC",
+  "avatar": "/uploads/avatars/avatar-1748767318967.jpg",
+  "createdAt": {
+    "$date": "2025-06-01T08:42:00.003Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-01T08:42:00.003Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "name": "hjk",
+  "surname": "hjk",
+  "login": "hjk123",
+  "email": "hjk@hjk.df",
+  "passwordHash": "$2b$10$FssNUZzOD9clunVXRMbNrOqEOzUeAX4Gey/RMbXA9DTuiuwV2e7XW",
+  "avatar": "/uploads/avatars/avatar-1748808692057.jpg",
+  "subscriptions": [
+    {
+      "$oid": "6831a3bdd9453adf4cdb26e1"
+    },
+    {
+      "$oid": "683cb3f5a7d36c1228cb5f33"
+    },
+    {
+      "$oid": "6835b1d11e97b851054a0f4c"
+    }
+  ],
+  "subscribers": [
+    {
+      "$oid": "683cb3f5a7d36c1228cb5f33"
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-06-01T20:11:33.396Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T20:50:37.851Z"
+  },
+  "__v": 0,
+  "coverProfile": "/uploads/coversUsers/imgUser-1748816022317.webp"
+},
+{
+  "_id": {
+    "$oid": "683e313ed0c787fa8865b1ed"
+  },
+  "name": "sadf",
+  "surname": "sadf",
+  "login": "asadf",
+  "email": "aasd@asds.sasd",
+  "passwordHash": "$2b$10$gzTh0YJDUJ3VNNrqOI3fae0XyrqQJUXSN/6yKTz8RBX39y/sa0hvS",
+  "avatar": "/uploads/avatars/avatar-1748906301703.jpg",
+  "subscriptions": [],
+  "subscribers": [],
+  "createdAt": {
+    "$date": "2025-06-02T23:18:22.563Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T23:18:22.563Z"
   },
   "__v": 0
 }]

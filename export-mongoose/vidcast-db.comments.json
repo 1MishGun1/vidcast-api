@@ -1,0 +1,105 @@
+[{
+  "_id": {
+    "$oid": "683e02f6163cf65b4fe14ba0"
+  },
+  "text": "фыв",
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "video": {
+    "$oid": "6839ead18107af1f338d8a6c"
+  },
+  "replies": [],
+  "parentComment": null,
+  "createdAt": {
+    "$date": "2025-06-02T20:00:54.790Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T20:00:54.790Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e0317163cf65b4fe14bb5"
+  },
+  "text": "hjk123",
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "video": {
+    "$oid": "6835f83a42aa66b696c11063"
+  },
+  "replies": [],
+  "parentComment": null,
+  "createdAt": {
+    "$date": "2025-06-02T20:01:27.824Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T20:01:27.824Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e05576a8a5236342ed112"
+  },
+  "text": "asd",
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "video": {
+    "$oid": "6835f83a42aa66b696c11063"
+  },
+  "replies": [],
+  "parentComment": null,
+  "createdAt": {
+    "$date": "2025-06-02T20:11:03.841Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T20:11:03.841Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e062c6a8a5236342ed13d"
+  },
+  "text": "выа",
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "video": {
+    "$oid": "6839ead18107af1f338d8a6c"
+  },
+  "replies": [],
+  "parentComment": null,
+  "createdAt": {
+    "$date": "2025-06-02T20:14:36.887Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T20:14:36.887Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e0d7c5ebbc9395cb5e660"
+  },
+  "text": "sdf",
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "video": {
+    "$oid": "6835f83a42aa66b696c11063"
+  },
+  "replies": [],
+  "parentComment": null,
+  "createdAt": {
+    "$date": "2025-06-02T20:45:48.752Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T20:45:48.752Z"
+  },
+  "__v": 0
+}]

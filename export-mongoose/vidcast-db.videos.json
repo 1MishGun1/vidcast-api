@@ -1,52 +1,119 @@
 [{
   "_id": {
-    "$oid": "67b36619159fb424f1f1dbf2"
+    "$oid": "6835f83a42aa66b696c11063"
   },
-  "title": "The main title",
-  "description": "Test desc",
+  "title": "asdafasd",
+  "description": "asdfasfsdf",
   "tags": [
-    "one",
-    "two",
-    "tree",
-    "five",
-    "nine"
+    "asdf",
+    "sddfg",
+    "wef"
   ],
-  "views": 6,
+  "views": 383,
   "user": {
-    "$oid": "67b3330eba098812e7a8ebd4"
+    "$oid": "6835b1d11e97b851054a0f4c"
   },
-  "cover": "https://example.com/avatar.jpg",
-  "videoUrl": "https://example.com/avatar.jpg",
+  "cover": "/uploads/coversVideos/imgVideo-1748367415115.png",
+  "videoUrl": "/uploads/videos/video-1748367401377.mp4",
   "createdAt": {
-    "$date": "2025-02-17T16:38:49.932Z"
+    "$date": "2025-05-27T17:36:58.093Z"
   },
   "updatedAt": {
-    "$date": "2025-02-17T17:09:44.071Z"
+    "$date": "2025-06-03T04:10:17.563Z"
   },
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "67b36813b2c32ab6c82b321b"
+    "$oid": "6839ead18107af1f338d8a6c"
   },
-  "title": "Test 123",
-  "description": "Test 123",
+  "title": "Как стать продуктивнее?",
+  "description": "Как стать продуктивнее? Очень просто!",
   "tags": [
-    "one",
-    "two",
-    "tree"
+    "учеба",
+    "концентрация"
   ],
-  "views": 5,
+  "views": 187,
   "user": {
-    "$oid": "67b3330eba098812e7a8ebd4"
+    "$oid": "6831a3bdd9453adf4cdb26e1"
   },
-  "cover": "https://example.com/avatar.jpg",
-  "videoUrl": "https://example.com/avatar.jpg",
+  "cover": "/uploads/coversVideos/imgVideo-1748626127981.jpg",
+  "videoUrl": "/uploads/videos/video-1748626122161.mp4",
   "createdAt": {
-    "$date": "2025-02-17T16:47:15.798Z"
+    "$date": "2025-05-30T17:28:49.265Z"
   },
   "updatedAt": {
-    "$date": "2025-02-17T16:53:59.656Z"
+    "$date": "2025-06-03T04:10:22.298Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683c2ac0e8e8b1f60e6ca09a"
+  },
+  "title": "Самый эпичный видос про танки",
+  "description": "Самый эпичный видос про танки. Смотреть всем, шок контент",
+  "tags": [
+    "танки",
+    "контент"
+  ],
+  "views": 65,
+  "user": {
+    "$oid": "6831a3bdd9453adf4cdb26e1"
+  },
+  "cover": "/uploads/coversVideos/imgVideo-1748773568116.webp",
+  "videoUrl": "/uploads/videos/video-1748773550462.webm",
+  "createdAt": {
+    "$date": "2025-06-01T10:26:08.914Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T23:00:17.735Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e2995d0c787fa8865b14f"
+  },
+  "title": "asd",
+  "description": "asd",
+  "tags": [
+    "asd"
+  ],
+  "views": 7,
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "cover": "",
+  "videoUrl": "/uploads/videos/video-1748904336972.webm",
+  "createdAt": {
+    "$date": "2025-06-02T22:45:41.590Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T23:00:22.021Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e2cafd0c787fa8865b1b7"
+  },
+  "title": "sd",
+  "description": "sd",
+  "tags": [
+    "sd"
+  ],
+  "views": 1,
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "cover": "",
+  "videoUrl": "/uploads/videos/video-1748905131127.mp4",
+  "createdAt": {
+    "$date": "2025-06-02T22:58:55.342Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T22:58:57.020Z"
   },
   "__v": 0
 }]

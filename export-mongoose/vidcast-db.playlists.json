@@ -39,4 +39,110 @@
     "$date": "2025-04-29T13:44:37.155Z"
   },
   "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6839fa878107af1f338d8abf"
+  },
+  "title": "adds",
+  "description": "asd",
+  "videos": [],
+  "user": {
+    "$oid": "6831a3bdd9453adf4cdb26e1"
+  },
+  "isVisible": true,
+  "createdAt": {
+    "$date": "2025-05-30T18:35:51.633Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-30T18:35:51.633Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683d453849b414fc75432a7e"
+  },
+  "title": "123",
+  "description": "123",
+  "videos": [
+    {
+      "$oid": "683c2ac0e8e8b1f60e6ca09a"
+    },
+    {
+      "$oid": "6839ead18107af1f338d8a6c"
+    }
+  ],
+  "user": {
+    "$oid": "6831a3bdd9453adf4cdb26e1"
+  },
+  "isVisible": true,
+  "createdAt": {
+    "$date": "2025-06-02T06:31:20.943Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T06:39:54.534Z"
+  },
+  "__v": 7
+},
+{
+  "_id": {
+    "$oid": "683d476449b414fc75432b04"
+  },
+  "title": "test",
+  "description": "test dfngkdnf kgfdkfl sdfgkldnsgk sdfgknsfkn sdfknsdkfnlsdk sfgvs",
+  "videos": [
+    {
+      "$oid": "6835f83a42aa66b696c11063"
+    }
+  ],
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "isVisible": true,
+  "createdAt": {
+    "$date": "2025-06-02T06:40:36.922Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T06:40:46.881Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "683d47ee49b414fc75432b3d"
+  },
+  "title": "1",
+  "description": "1",
+  "videos": [],
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "isVisible": true,
+  "createdAt": {
+    "$date": "2025-06-02T06:42:54.576Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T06:42:54.576Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683d48d6f0238e35c4bd8c2b"
+  },
+  "title": "privaate",
+  "description": "privaate",
+  "videos": [],
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "isVisible": false,
+  "createdAt": {
+    "$date": "2025-06-02T06:46:46.555Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T06:46:46.555Z"
+  },
+  "__v": 0
 }]

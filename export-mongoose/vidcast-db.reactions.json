@@ -1,0 +1,95 @@
+[{
+  "_id": {
+    "$oid": "683c2c413fb1ac4048e6563a"
+  },
+  "user": {
+    "$oid": "6831a3bdd9453adf4cdb26e1"
+  },
+  "video": {
+    "$oid": "683c2ac0e8e8b1f60e6ca09a"
+  },
+  "type": "like",
+  "createdAt": {
+    "$date": "2025-06-01T10:32:33.273Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-01T10:32:33.273Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683c2c513fb1ac4048e6564e"
+  },
+  "user": {
+    "$oid": "6831a3bdd9453adf4cdb26e1"
+  },
+  "video": {
+    "$oid": "6839ead18107af1f338d8a6c"
+  },
+  "type": "like",
+  "createdAt": {
+    "$date": "2025-06-01T10:32:49.936Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-01T10:32:49.936Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683c2c9a3fb1ac4048e6565c"
+  },
+  "user": {
+    "$oid": "6831a3bdd9453adf4cdb26e1"
+  },
+  "video": {
+    "$oid": "6835f83a42aa66b696c11063"
+  },
+  "type": "dislike",
+  "createdAt": {
+    "$date": "2025-06-01T10:34:02.519Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-01T10:34:02.519Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e1f31d0c787fa8865afe2"
+  },
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "video": {
+    "$oid": "683c2ac0e8e8b1f60e6ca09a"
+  },
+  "type": "like",
+  "createdAt": {
+    "$date": "2025-06-02T22:01:21.046Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T22:01:21.046Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "683e1f3cd0c787fa8865aff1"
+  },
+  "user": {
+    "$oid": "683cb3f5a7d36c1228cb5f33"
+  },
+  "video": {
+    "$oid": "6835f83a42aa66b696c11063"
+  },
+  "type": "like",
+  "createdAt": {
+    "$date": "2025-06-02T22:01:32.136Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-02T22:01:32.136Z"
+  },
+  "__v": 0
+}]
