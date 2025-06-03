@@ -6,6 +6,7 @@ const {
   getOneVideo,
   updateVideo,
   deleteVideo,
+  getTrendingVideos,
 } = require("../controllers/VideoController");
 const videoValidation = require("../validations/video");
 const checkMe = require("../middlewares/checkMe");
@@ -18,6 +19,9 @@ videoRouter.get("/videos", getAllVideos);
 
 //! Get all tags
 videoRouter.get("/tags", getLastTags);
+
+//! Get trending videos
+videoRouter.get("/videos/trending", getTrendingVideos);
 
 //! Get one video
 videoRouter.get("/videos/:id", getOneVideo);
