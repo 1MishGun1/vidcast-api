@@ -89,6 +89,22 @@ const getOneVideo = async (req, res) => {
   }
 };
 
+//! Get trending videos
+const getTrendingVideos = async (req, res) => {
+  try {
+    const videos = await VideoModel.find({ views: { $gte: 300 } })
+      .sort({ views: -1 })
+      .populate("user");
+
+    res.json(videos);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Не удалось отобразить трендовые видео",
+    });
+  }
+};
+
 const updateVideo = async (req, res) => {
   try {
     const videoId = req.params.id;
@@ -159,4 +175,5 @@ module.exports = {
   getOneVideo,
   updateVideo,
   deleteVideo,
+  getTrendingVideos,
 };
