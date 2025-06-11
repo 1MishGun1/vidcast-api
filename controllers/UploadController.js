@@ -5,7 +5,6 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let uploadPath = "uploads";
 
-    // Определяем поддиректорию в зависимости от типа файла
     switch (file.fieldname) {
       case "video":
         uploadPath = path.join(uploadPath, "videos");
