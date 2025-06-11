@@ -47,7 +47,7 @@ const createComment = async (req, res) => {
 
     if (parentCommentId) {
       await CommentModel.findByIdAndUpdate(parentCommentId, {
-        $push: { replies: savedComment._id },
+        $push: { replies: comment._id },
       });
     }
 
@@ -66,7 +66,7 @@ const createComment = async (req, res) => {
 const deleteComment = async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = req.query;
+    const { userId } = req.query;
 
     const comment = await CommentModel.findById(id).populate("video", "user");
 
@@ -75,7 +75,7 @@ const deleteComment = async (req, res) => {
     }
 
     const isAuthor = comment.user.equals(userId);
-    const isVideoAuthor = comment.videoId.user.equals(userId);
+    const isVideoAuthor = comment.video.user.equals(userId);
 
     if (!isAuthor && !isVideoAuthor) {
       return res
@@ -97,6 +97,7 @@ const deleteComment = async (req, res) => {
 
     res.json({ message: "Comment deleted successfully" });
   } catch (error) {
+    console.error("Ошибка удаления комментария:", error);
     res.status(500).json({ message: "Не удалось удалить комментарий" });
   }
 };
