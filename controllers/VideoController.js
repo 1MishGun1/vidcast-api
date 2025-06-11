@@ -1,21 +1,57 @@
 const VideoModel = require("../models/Video");
+const path = require("path");
+const {
+  indexVideo,
+  deleteVideoFromIndex,
+  esClient,
+} = require("../elastic-search/elastic");
+const ffmpeg = require("fluent-ffmpeg");
+ffmpeg.setFfmpegPath("C:\\Program Files\\ffmpeg\\ffmpeg.exe");
+
+const convertToHLS = (inputPath, outputDir, outputFilename) => {
+  return new Promise((resolve, reject) => {
+    ffmpeg(inputPath)
+      .addOptions([
+        "-preset ultrafast",
+        "-start_number 0",
+        "-hls_time 10",
+        "-hls_list_size 0",
+        "-f hls",
+      ])
+      .output(`${outputDir}/${outputFilename}.m3u8`)
+      .on("end", () => {
+        resolve(`/uploads/videos/${outputFilename}.m3u8`);
+      })
+      .on("error", (err) => {
+        reject(err);
+      })
+      .run();
+  });
+};
 
 //! Create a new video
 const createVideo = async (req, res) => {
   try {
-    const doc = await VideoModel({
-      title: req.body.title,
-      description: req.body.description,
-      tags: req.body.tags,
-      cover: req.body.cover,
-      videoUrl: req.body.videoUrl,
+    const { title, description, tags, cover, hlsUrl } = req.body;
+
+    if (!title || !description || !hlsUrl) {
+      return res.status(400).json({ message: "Некоторые поля отсутствуют" });
+    }
+
+    const doc = new VideoModel({
+      title,
+      description,
+      tags,
+      cover,
+      hlsUrl,
       user: req.userId,
     });
 
     const video = await doc.save();
-    res.json(video);
+    await indexVideo(video);
+    res.status(201).json(video);
   } catch (error) {
-    console.error(error);
+    console.error("Ошибка при создании видео:", error);
     return res.status(500).json({
       message: "Не удалось создать видео",
     });
@@ -133,6 +169,8 @@ const updateVideo = async (req, res) => {
       });
     }
 
+    await indexVideo(updateVideo);
+
     res.json({
       update: true,
     });
@@ -156,6 +194,9 @@ const deleteVideo = async (req, res) => {
         message: "Запрашиваемое видео отсутствует",
       });
     }
+
+    await deleteVideoFromIndex(videoId);
+    await esClient.indices.refresh({ index: ES_INDEX });
 
     res.json({
       delete: true,
