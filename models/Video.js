@@ -24,7 +24,10 @@ const VideoSchema = new mongoose.Schema(
       require: true,
     },
     cover: String,
-    videoUrl: String,
+    hlsUrl: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
