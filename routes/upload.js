@@ -1,6 +1,7 @@
 const uploadRouter = require("express").Router();
 const checkMe = require("../middlewares/checkMe");
 const upload = require("../controllers/UploadController");
+const compressVideo = require("../controllers/CompressController");
 const UserModel = require("../models/User");
 
 //! Upload video
@@ -8,11 +9,15 @@ uploadRouter.post(
   "/uploads/videos",
   checkMe,
   upload.single("video"),
-  (req, res) => {
-    res.json({
-      url: `/uploads/videos/${req.file.filename}`,
-    });
-  }
+  compressVideo.uploadVideo
+);
+
+//! Compress video
+uploadRouter.post(
+  "/uploads/compress-video",
+  checkMe,
+  upload.single("video"),
+  compressVideo.uploadVideo
 );
 
 //! Upload cover for video
@@ -31,7 +36,7 @@ uploadRouter.post(
 uploadRouter.post(
   "/uploads/coversUsers",
   checkMe,
-  upload.single("imgUser"), // или другой актуальный ключ
+  upload.single("imgUser"),
   async (req, res) => {
     try {
       if (!req.file) {
@@ -41,7 +46,6 @@ uploadRouter.post(
       const filePath = `/uploads/coversUsers/${req.file.filename}`;
       const userId = req.userId;
 
-      // Сохраняем путь в поле coverProfile пользователя
       await UserModel.findByIdAndUpdate(userId, {
         coverProfile: filePath,
       });
@@ -55,15 +59,10 @@ uploadRouter.post(
 );
 
 //! Upload avatars user
-uploadRouter.post(
-  "/uploads/avatars",
-  // checkMe,
-  upload.single("avatar"),
-  (req, res) => {
-    res.json({
-      url: `/uploads/avatars/${req.file.filename}`,
-    });
-  }
-);
+uploadRouter.post("/uploads/avatars", upload.single("avatar"), (req, res) => {
+  res.json({
+    url: `/uploads/avatars/${req.file.filename}`,
+  });
+});
 
 module.exports = uploadRouter;
