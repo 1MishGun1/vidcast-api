@@ -10,7 +10,7 @@ const checkMe = require("../middlewares/checkMe");
 reactionRouter.post("/", checkMe, toggleReaction);
 
 //! Get reaction
-reactionRouter.get("/:videoId", checkMe, getReactions);
+reactionRouter.get("/:videoId", getReactions);
 
 //! Get liked video by user
 reactionRouter.get("/liked/me", checkMe, getLikedVideoByUser);

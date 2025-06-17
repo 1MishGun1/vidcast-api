@@ -34,7 +34,7 @@ const createVideo = async (req, res) => {
   try {
     const { title, description, tags, cover, hlsUrl } = req.body;
 
-    if (!title || !description || !hlsUrl) {
+    if (!title || !description || !tags || !hlsUrl) {
       return res.status(400).json({ message: "Некоторые поля отсутствуют" });
     }
 

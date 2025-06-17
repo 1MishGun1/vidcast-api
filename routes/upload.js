@@ -12,12 +12,11 @@ uploadRouter.post(
   compressVideo.uploadVideo
 );
 
-//! Compress video
-uploadRouter.post(
-  "/uploads/compress-video",
+//! Get progress HLS-work
+uploadRouter.get(
+  "/uploads/progress/:videoId",
   checkMe,
-  upload.single("video"),
-  compressVideo.uploadVideo
+  compressVideo.getHlsProgress
 );
 
 //! Upload cover for video

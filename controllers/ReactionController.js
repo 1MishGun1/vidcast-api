@@ -52,7 +52,7 @@ const getReactions = async (req, res) => {
     });
 
     let userReaction = null;
-    if (req.user) {
+    if (req.user && req.user.userId) {
       const found = await ReactionModel.findOne({
         video: videoId,
         user: req.user.userId,
@@ -79,7 +79,9 @@ const getLikedVideoByUser = async (req, res) => {
       .populate("video")
       .exec();
 
-    const likedVideos = likedReactions.map((reaction) => reaction.video);
+    const likedVideos = likedReactions
+      .map((reaction) => reaction.video)
+      .filter((video) => video !== null);
 
     res.json(likedVideos);
   } catch (error) {

@@ -5,6 +5,7 @@ const {
   getOnePlaylist,
   getPlaylistsByUser,
   pushVideoInPlaylist,
+  updatePlaylist,
   deleteVideoInPlaylist,
   deletePlaylist,
 } = require("../controllers/PlaylistController");
@@ -17,10 +18,10 @@ playlistRouter.post("/playlist", checkMe, createPlaylist);
 playlistRouter.get("/playlist", getAllPlaylists);
 
 //! Get one playlist
-playlistRouter.get("/playlist/:id", getOnePlaylist);
+playlistRouter.get("/playlist/:id", checkMe, getOnePlaylist);
 
 //! Get playlists by user
-playlistRouter.get("/playlist/user/:userId", getPlaylistsByUser);
+playlistRouter.get("/playlist/user/:userId", checkMe, getPlaylistsByUser);
 
 //! Push video in playlist
 playlistRouter.patch("/playlist/:id/add-video", checkMe, pushVideoInPlaylist);
@@ -31,6 +32,9 @@ playlistRouter.patch(
   checkMe,
   deleteVideoInPlaylist
 );
+
+//! Update playlist
+playlistRouter.patch("/playlist/:id", checkMe, updatePlaylist);
 
 //! Delete playlist
 playlistRouter.delete("/playlist/:id", checkMe, deletePlaylist);

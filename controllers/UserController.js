@@ -67,6 +67,26 @@ const login = async (req, res) => {
       });
     }
 
+    if (user.isBlocked) {
+      const now = new Date();
+
+      if (user.blockExpiresAt && user.blockExpiresAt < now) {
+        // Разблокировка — срок истёк
+        user.isBlocked = false;
+        user.blockReason = "";
+        user.blockExpiresAt = null;
+        await user.save();
+      } else {
+        // Пользователь всё ещё заблокирован
+        return res.status(403).json({
+          message: "Пользователь заблокирован",
+          reason: user.blockReason || "Не указана",
+          expiresAt: user.blockExpiresAt,
+          isPermanent: !user.blockExpiresAt,
+        });
+      }
+    }
+
     const tokenUser = jwt.sign(
       {
         _id: user._id,
@@ -144,6 +164,58 @@ const getOneUser = async (req, res) => {
   }
 };
 
+//! Update data user
+const updateUser = async (req, res) => {
+  try {
+    const userId = req.userId;
+
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "Пользователь не найден" });
+    }
+
+    const {
+      name,
+      surname,
+      login,
+      email,
+      avatar,
+      coverProfile,
+      oldPassword,
+      newPassword,
+    } = req.body;
+
+    // Обновление пароля, если передан oldPassword и newPassword
+    if (oldPassword && newPassword) {
+      const isValidOldPassword = await bcrypt.compare(
+        oldPassword,
+        user.passwordHash
+      );
+      if (!isValidOldPassword) {
+        return res.status(400).json({ message: "Старый пароль неверен" });
+      }
+      const salt = await bcrypt.genSalt(10);
+      user.passwordHash = await bcrypt.hash(newPassword, salt);
+    }
+
+    // Обновление остальных данных
+    if (name) user.name = name;
+    if (surname) user.surname = surname;
+    if (login) user.login = login;
+    if (email) user.email = email;
+    if (avatar) user.avatar = avatar;
+    if (coverProfile) user.coverProfile = coverProfile;
+
+    const updatedUser = await user.save();
+    const { passwordHash, ...userData } = updatedUser._doc;
+
+    res.json(userData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Ошибка при обновлении пользователя" });
+  }
+};
+
 //! Toggle subscription
 const toggleSubscription = async (req, res) => {
   try {
@@ -160,7 +232,6 @@ const toggleSubscription = async (req, res) => {
     const isSubscribed = user.subscriptions.includes(channelId);
 
     if (isSubscribed) {
-      // Отписываемся
       await UserModel.findByIdAndUpdate(userId, {
         $pull: { subscriptions: channelId },
       });
@@ -168,7 +239,6 @@ const toggleSubscription = async (req, res) => {
         $pull: { subscribers: userId },
       });
     } else {
-      // Подписываемся
       await UserModel.findByIdAndUpdate(userId, {
         $addToSet: { subscriptions: channelId },
       });
@@ -177,7 +247,10 @@ const toggleSubscription = async (req, res) => {
       });
     }
 
-    res.json({ isSubscribed: !isSubscribed });
+    const updatedChannel = await UserModel.findById(channelId);
+    const subscribersCount = updatedChannel.subscribers.length;
+
+    res.json({ isSubscribed: !isSubscribed, subscribersCount });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Ошибка подписки" });
@@ -234,6 +307,7 @@ module.exports = {
   getMe,
   getAllUsers,
   getOneUser,
+  updateUser,
   toggleSubscription,
   checkSubscription,
   getSubscribersCount,

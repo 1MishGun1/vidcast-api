@@ -6,6 +6,8 @@ const mainRouter = require("./routes/index");
 const { initEs, indexVideo } = require("./elastic-search/elastic");
 const Video = require("./models/Video");
 
+require("dotenv").config();
+
 const app = express();
 const PORT = 3333;
 

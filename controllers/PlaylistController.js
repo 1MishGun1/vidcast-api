@@ -59,6 +59,7 @@ const getOnePlaylist = async (req, res) => {
     }
 
     res.json(playlist);
+    console.log("req.userId:", req.userId);
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -71,13 +72,13 @@ const getOnePlaylist = async (req, res) => {
 const getPlaylistsByUser = async (req, res) => {
   try {
     const requestingUserId = req.userId;
-    const requestedUserId = req.params.userId; 
+    const requestedUserId = req.params.userId;
 
     const isOwner = requestingUserId === requestedUserId;
 
     const playlists = await PlaylistModel.find({
       user: requestedUserId,
-      ...(isOwner ? {} : { isVisible: true }), 
+      ...(isOwner ? {} : { isVisible: true }),
     });
 
     res.json(playlists);
@@ -152,6 +153,32 @@ const deleteVideoInPlaylist = async (req, res) => {
 };
 
 //! Update playlist
+const updatePlaylist = async (req, res) => {
+  try {
+    const playlist = await PlaylistModel.findById(req.params.id);
+
+    if (!playlist) {
+      return res.status(404).json({ message: "Плейлист не найден" });
+    }
+
+    if (playlist.user.toString() !== req.userId) {
+      return res.status(403).json({ message: "Нет доступа к плейлисту" });
+    }
+
+    const { title, description, isVisible } = req.body;
+
+    playlist.title = title || playlist.title;
+    playlist.description = description || playlist.description;
+    playlist.isVisible =
+      typeof isVisible === "boolean" ? isVisible : playlist.isVisible;
+
+    const updated = await playlist.save();
+    res.json(updated);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Не удалось обновить плейлист" });
+  }
+};
 
 //! Delete playlist
 const deletePlaylist = async (req, res) => {
@@ -186,6 +213,7 @@ module.exports = {
   getOnePlaylist,
   pushVideoInPlaylist,
   deleteVideoInPlaylist,
+  updatePlaylist,
   deletePlaylist,
   getPlaylistsByUser,
 };

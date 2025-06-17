@@ -40,6 +40,23 @@ const UserSchema = new mongoose.Schema(
         default: [],
       },
     ],
+    isBlocked: {
+      type: Boolean,
+      default: false,
+    },
+    blockReason: {
+      type: String,
+      default: "",
+    },
+    blockExpiresAt: {
+      type: Date,
+      default: null,
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
   },
   {
     timestamps: true,
